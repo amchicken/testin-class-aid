@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+//REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { RefreshLogin } from "./actions/loginAction";
+//PAGE AND COMPONENT
+import Home from "./pages/Home";
+import UserLogin from "./components/UserLogin";
+import UserSignup from "./components/UserSignup";
+//CSS
+import "./styles/app.scss";
 
-function App() {
+const App = () => {
+  const { isLogin } = useSelector((state) => state.login);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (
+      localStorage.getItem("token") !== null &&
+      localStorage.getItem("user") !== null
+    ) {
+      dispatch(RefreshLogin());
+    }
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Switch>
+          {isLogin ? (
+            <Redirect to="/" />
+          ) : (
+            <Route path={["/login", "/signup"]} exact>
+              <Route path="/login" exact>
+                <UserLogin />
+              </Route>
+              <Route path="/signup" exact>
+                <UserSignup />
+              </Route>
+            </Route>
+          )}
+          {isLogin ? (
+            <Route path={["/course/:id", "/"]}>
+              <Home />
+            </Route>
+          ) : (
+            <Redirect to="/login" />
+          )}
+        </Switch>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
