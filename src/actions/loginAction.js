@@ -1,6 +1,5 @@
 import axios from "axios";
 import { loginURL, signupURL } from "../api";
-import { Redirect } from "react-router";
 //IMPORT DECODE JWT
 import jwtDecode from "jwt-decode";
 

@@ -33,23 +33,24 @@ const App = () => {
       <Router>
         <Switch>
           {isLogin ? (
-            <Redirect to="/" />
-          ) : (
-            <Route path={["/login", "/signup"]} exact>
-              <Route path="/login" exact>
-                <UserLogin />
+            <div>
+              <Redirect to="/" />
+              <Route path={["/", "/course/:name"]}>
+                <Home />
               </Route>
-              <Route path="/signup" exact>
-                <UserSignup />
-              </Route>
-            </Route>
-          )}
-          {isLogin ? (
-            <Route path={["/course/:id", "/"]}>
-              <Home />
-            </Route>
+            </div>
           ) : (
-            <Redirect to="/login" />
+            <div>
+              <Redirect to="/login" />
+              <Route path={["/login", "/signup"]} exact>
+                <Route path="/login" exact>
+                  <UserLogin />
+                </Route>
+                <Route path="/signup" exact>
+                  <UserSignup />
+                </Route>
+              </Route>
+            </div>
           )}
         </Switch>
       </Router>

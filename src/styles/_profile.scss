@@ -1,8 +1,41 @@
-.nav-profile {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    padding-left: 0.5rem;
+.nav-profile-container {
+  cursor: pointer;
+  .nav-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .profileImage {
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      background-image: linear-gradient(300deg, #ddbdfc, #96c8fb);
+      font-size: 25px;
+      color: #fff;
+      text-align: center;
+      margin-left: 1rem;
+      line-height: 45px;
+    }
+
+    img {
+      padding-left: 0.5rem;
+    }
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    margin-left: -1rem;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    div {
+      padding: 0.2rem 0;
+    }
+  }
+
+  .show {
+    display: block;
+    transform: translate(1rem, 0);
+    animation: all 0.5s ease-in-out;
   }
 }

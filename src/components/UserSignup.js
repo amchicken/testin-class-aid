@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
-import { ClearError, Register } from "../actions/loginAction";
+import { Register } from "../actions/loginAction";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const Signup = () => {
           </button>
           <div>
             <p>Already member? </p>
-            <Link to="/login">login</Link>
+            <Link to="/login">Login</Link>
           </div>
         </div>
       </form>
