@@ -41,13 +41,13 @@ const Home = () => {
             ALL COURSE
             <div className="course-continer">
               {courses.map((course) => (
-                <Link to={`/course/${course.name}`} key={course._id}>
+                <Link to={`/course/${course.course}`} key={course._id}>
                   <div className="course">{course.name}</div>
                 </Link>
               ))}
             </div>
           </Route>
-          <Route path="/course/:name" component={CourseDetail} />
+          <Route path="/course/:course" component={CourseDetail} />
         </div>
       </div>
     </div>
