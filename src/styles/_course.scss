@@ -10,4 +10,34 @@
 .course-detail {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  .course-split {
+    display: flex;
+    justify-content: center;
+    .list-name {
+      width: 15%;
+      ul li {
+        list-style: none;
+        padding: 0.5rem 0;
+      }
+    }
+
+    .course-content-container {
+      width: 80%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-content: space-around;
+      align-items: space-around;
+      background-color: brown;
+      .course-chat-container {
+        background-color: blue;
+        .chat-group {
+          width: 100%;
+          display: flex;
+        }
+      }
+    }
+  }
 }

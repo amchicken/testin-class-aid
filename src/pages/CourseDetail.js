@@ -3,14 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { loadSelectedCourse } from "../actions/selectedCourseAction";
 
 function CourseDetail({ match }) {
+  const URL = match.params.course;
   const dispatch = useDispatch();
   const { studentList, courseAuthor, selected } = useSelector(
     (state) => state.selectCourse
   );
-
   const [loading, isLoading] = useState(true);
-
-  const URL = match.params.course;
 
   useEffect(() => {
     dispatch(loadSelectedCourse(URL)).then(function () {
@@ -23,20 +21,30 @@ function CourseDetail({ match }) {
       {loading ? (
         <div>LOAING....</div>
       ) : (
-        <div>
-          <div>
-            COURSE_CODE:{selected.course}
-            COURSE_NAME:{selected.name}
-            COURSE_AUTHOR:{courseAuthor.name}
-            AUTHOR_EMAIL:{courseAuthor.email}
-          </div>
-          <div>
+        <div className="course-split">
+          <div className="list-name">
             <ul>
-              <li>lsie</li>
               {studentList.map((student) => (
                 <li key={student._id}>{student.name}</li>
               ))}
             </ul>
+          </div>
+          <div className="course-content-container">
+            <div>
+              <h1>{selected.course}</h1>
+              <h2>{selected.name}</h2>
+            </div>
+            <div>
+              COURSE_AUTHOR:{courseAuthor.name}
+              AUTHOR_EMAIL:{courseAuthor.email}
+            </div>
+            <div className="course-chat-container">
+              <div>CHat</div>
+              <div className="chat-group">
+                <input type="text" />
+                <button>sent</button>
+              </div>
+            </div>
           </div>
         </div>
       )}
