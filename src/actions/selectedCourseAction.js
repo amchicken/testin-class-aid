@@ -1,31 +1,31 @@
 import axios from "axios";
 import { selectedCourseURL, singelUserDetailURL } from "../api";
 
-export const loadSelectedCourse = (courseId) => async (dispatch) => {
+export const loadSelectedCourse = (id) => async (dispatch) => {
   dispatch({
     type: "LOADING_SELECTED_COURSE",
   });
-  const courseDetail = await axios.get(selectedCourseURL(courseId));
-  const StudentList = await getStudentNameList(courseDetail.data.studentList);
+  const CourseData = await axios.get(selectedCourseURL(id));
+  const ListOfUser = await tooManyName(CourseData.data.studentList);
   dispatch({
     type: "GET_SELECTED_COURSE",
     payload: {
-      selected: courseDetail.data.classDetail,
-      courseAuthor: {
-        name: courseDetail.data.authorName.name,
-        email: courseDetail.data.authorName.email,
-      },
-      studentList: StudentList,
+      selected: CourseData.data.classDetail,
+      courseAuthor: CourseData.data.authorName,
+      studentList: ListOfUser,
     },
   });
 };
 
-async function getStudentNameList(list) {
-  let student = [];
-  list.map(async (e) => {
-    await axios.get(singelUserDetailURL(e.user_id)).then((res) => {
-      student.push({ _id: res.data._id, name: res.data.name });
+function tooManyName(list) {
+  return new Promise((resovle) => {
+    let studentName = [];
+    list.map(async (singleName) => {
+      const nameList = await axios(singelUserDetailURL(singleName.user_id));
+      studentName.push(nameList.data);
     });
+    setTimeout(function () {
+      resovle(studentName);
+    }, 1000);
   });
-  return student;
 }

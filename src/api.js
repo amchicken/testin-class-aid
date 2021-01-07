@@ -1,10 +1,6 @@
 //Base URL
-<<<<<<< HEAD
-// const base_url = "https://backend-class-aid.herokuapp.com/api/";
 const base_url = "http://localhost:3000/api/";
-=======
-const base_url = "https://backend-class-aid.herokuapp.com/api/";
->>>>>>> d27ca8f5d3e0fc6596ccbc22bca9d031da7e332b
+// const base_url = "https://backend-class-aid.herokuapp.com/api/";
 const user_url = "user/";
 const course_url = "course/";
 const enroll_url = "enroll/";
