@@ -6,7 +6,14 @@ export const loadSelectedCourse = (id) => async (dispatch) => {
     type: "LOADING_SELECTED_COURSE",
   });
   const CourseData = await axios.get(selectedCourseURL(id));
-  const ListOfUser = await tooManyName(CourseData.data.studentList);
+  const ListOfUser = [];
+  await Promise.all(
+    CourseData.data.studentList.map(async (singleName) => {
+      await axios.get(singelUserDetailURL(singleName.user_id)).then((res) => {
+        ListOfUser.push(res.data);
+      });
+    })
+  );
   dispatch({
     type: "GET_SELECTED_COURSE",
     payload: {
@@ -16,16 +23,3 @@ export const loadSelectedCourse = (id) => async (dispatch) => {
     },
   });
 };
-
-function tooManyName(list) {
-  return new Promise((resovle) => {
-    let studentName = [];
-    list.map(async (singleName) => {
-      const nameList = await axios(singelUserDetailURL(singleName.user_id));
-      studentName.push(nameList.data);
-    });
-    setTimeout(function () {
-      resovle(studentName);
-    }, 1000);
-  });
-}

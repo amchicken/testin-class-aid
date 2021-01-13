@@ -1,10 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 //REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { RefreshLogin } from "./actions/loginAction";
@@ -30,30 +25,28 @@ const App = () => {
 
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          {isLogin ? (
-            <div>
-              <Redirect to="/" />
-              <Route path={["/", "/course/:name"]}>
-                <Home />
+      <Switch>
+        {isLogin ? (
+          <div>
+            <Redirect to="/" />
+            <Route path={["/", "/course/:name"]}>
+              <Home />
+            </Route>
+          </div>
+        ) : (
+          <div>
+            <Redirect to="/login" />
+            <Route path={["/login", "/signup"]} exact>
+              <Route path="/login" exact>
+                <UserLogin />
               </Route>
-            </div>
-          ) : (
-            <div>
-              <Redirect to="/login" />
-              <Route path={["/login", "/signup"]} exact>
-                <Route path="/login" exact>
-                  <UserLogin />
-                </Route>
-                <Route path="/signup" exact>
-                  <UserSignup />
-                </Route>
+              <Route path="/signup" exact>
+                <UserSignup />
               </Route>
-            </div>
-          )}
-        </Switch>
-      </Router>
+            </Route>
+          </div>
+        )}
+      </Switch>
     </div>
   );
 };
