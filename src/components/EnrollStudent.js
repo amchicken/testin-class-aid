@@ -54,8 +54,8 @@ function EnrollStudent({ setEnrollStudent }) {
 
   useEffect(() => {
     dispatch(loadDetail()).then(() => {
-      setisLoading(false);
       filterName();
+      setisLoading(false);
     });
   }, [dispatch, isLoading]);
 
@@ -69,7 +69,7 @@ function EnrollStudent({ setEnrollStudent }) {
         </div>
         <div>
           <label htmlFor="student">Student</label>
-          <select name="student" ref={selectRef} onChange={selectHandle}>
+          <select name="student" ref={selectRef}>
             {nameList.map((single) => (
               <option key={single._id} value={single._id}>
                 {single.name}
