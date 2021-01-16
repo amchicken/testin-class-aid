@@ -51,7 +51,7 @@ function EnrollStudent({ setEnrollStudent }) {
       });
     console.log();
   }
-
+  
   useEffect(() => {
     dispatch(loadDetail()).then(() => {
       filterName();
@@ -60,9 +60,11 @@ function EnrollStudent({ setEnrollStudent }) {
   }, [dispatch, isLoading]);
 
   return (
-    <div className="student-enroll-container">
+    <div className="outerContainer">
+      <div className="student-enroll-container">
       <button onClick={close}>X</button>
       <h2>Enroll student</h2>
+      innerring
       <form>
         <div>
           <h3>course Deaitl</h3>
@@ -79,6 +81,7 @@ function EnrollStudent({ setEnrollStudent }) {
         </div>
         <button onClick={enrollHandle}>Enrollled</button>
       </form>
+    </div>
     </div>
   );
 }

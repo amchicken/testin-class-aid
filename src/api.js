@@ -9,7 +9,7 @@ export const userDetailURL = () => `${base_url}${user_url}alluser`;
 export const singelUserDetailURL = (id) => `${base_url}${user_url}detail/${id}`;
 export const loginURL = () => `${base_url}${user_url}login`;
 export const signupURL = () => `${base_url}${user_url}register`;
-export const addCourseURL = () => `${base_url}${course_url}addCourse`;
+export const addCourseURL = () => `${base_url}${course_url}add`;
 export const getAllCourseURL = () => `${base_url}${enroll_url}`;
 export const selectedCourseURL = (classId) =>
   `${base_url}${enroll_url}class/${classId}`;
