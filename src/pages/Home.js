@@ -18,45 +18,51 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="App">
       <NavTop />
-      <div className="container">
-        <NavSide />
-        <div className="content">
-          <Route path="/" exact>
-            <div>
-              AUTHOR COURSE
-              <div className="course-continer">
-                {courses.map((course) => {
-                  if (user._id === course.author_id)
-                    return (
-                      <Link to={`/course/${course.course}`} key={course._id}>
-                        <div className="course">{course.name}</div>
-                      </Link>
-                    );
-                  else return "";
-                })}
-              </div>
-            </div>
-            ALL COURSE
+      <NavSide />
+      <div className="content">
+        <Route path="/" exact>
+          <div>
+            AUTHOR COURSE
             <div className="course-continer">
-              {user.is_admin ? (
-                <Link to={`/addNewCourse`}>
-                  <div className="course">Add new course</div>
-                </Link>
-              ) : (
-                ""
-              )}
-              {courses.map((course) => (
-                <Link to={`/course/${course.course}`} key={course._id}>
-                  <div className="course">{course.name}</div>
-                </Link>
-              ))}
+              {courses.map((course) => {
+                if (user._id === course.author_id)
+                  return (
+                    <Link to={`/course/${course.course}`} key={course._id}>
+                      <div className="course">
+                        <h2>{course.course}</h2>
+                        <span>{course.name}</span>
+                      </div>
+                    </Link>
+                  );
+                else return "";
+              })}
             </div>
-          </Route>
-          <Route path="/course/:course" component={CourseDetail} />
-          <Route path="/addNewCourse" component={AddCoursePage} />
-        </div>
+          </div>
+          ALL COURSE
+          <div className="course-continer">
+            {user.is_admin ? (
+              <Link to={`/addNewCourse`}>
+                <div className="course">
+                  <h1>Add new course</h1>
+                </div>
+              </Link>
+            ) : (
+              ""
+            )}
+            {courses.map((course) => (
+              <Link to={`/course/${course.course}`} key={course._id}>
+                <div className="course">
+                  <h2>{course.course}</h2>
+                  <span>{course.name}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </Route>
+        <Route path="/course/:course" component={CourseDetail} />
+        <Route path="/addNewCourse" component={AddCoursePage} />
       </div>
     </div>
   );

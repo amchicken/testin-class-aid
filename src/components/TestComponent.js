@@ -6,7 +6,7 @@ const TestComponent = () => {
       <button class="fancy">
         <span class="top-key"></span>
         <a href="#" target="_blank" class="">
-          EnrollStudent
+          Enroll
         </a>
         <span class="bottom-key-1"></span>
         <span class="bottom-key-2"></span>

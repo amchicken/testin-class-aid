@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { loadSelectedCourse } from "../actions/selectedCourseAction";
 import { loadDetail } from "../actions/userAction";
 import { enrollURL } from "../api";

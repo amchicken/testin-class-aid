@@ -1,45 +1,47 @@
-.course-continer {
-  display: flex;
-  flex-wrap: wrap;
-  .course {
-    border: 1px black solid;
-    padding: 1rem 1.5rem;
-    margin: 0.5rem;
+.course-detail {
+  height: calc(100vh - 80px);
+  display: grid;
+  grid-template-areas: "namelist classdetail";
+  grid-template-columns: 15% 1fr;
+  position: relative;
+}
+
+.course-content-container {
+  grid-area: classdetail;
+  max-height: calc(100vh - 80px);
+  overflow: hidden;
+  display: grid;
+  grid-template-areas:
+    "coursehead"
+    "courserank"
+    "coursechat";
+  grid-template-rows: 15% 15% 70%;
+  .course-head {
+    grid-area: coursehead;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .course-ranking {
+    grid-area: courserank;
+  }
+
+  .course-chat-container {
+    grid-area: coursechat;
+    max-height: 70%;
+    // background-color: blanchedalmond;
   }
 }
 
-.course-detail {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 80px);
-  .course-split {
-    display: flex;
-    justify-content: center;
-    .list-name {
-      width: 15%;
-      ul li {
-        list-style: none;
-        padding: 0.5rem 0;
-      }
-    }
-
-    .course-content-container {
-      width: 80%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-content: space-around;
-      align-items: space-around;
-
-      // background-color: brown;
-      .course-chat-container {
-        // background-color: blue;
-        .chat-group {
-          width: 100%;
-          display: flex;
-        }
-      }
-    }
+.list-name {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  grid-area: namelist;
+  ul li {
+    width: 100%;
+    list-style-type: none;
   }
 }

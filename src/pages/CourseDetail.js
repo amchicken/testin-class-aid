@@ -24,11 +24,11 @@ function CourseDetail({ match }) {
   }, [dispatch, URL]);
 
   return (
-    <div className="course-detail">
+    <div>
       {loading ? (
         <div>LOAING....</div>
       ) : (
-        <div className="course-split">
+        <div className="course-detail">
           {enrollStudent ? (
             <EnrollStudent setEnrollStudent={setEnrollStudent} URL={URL} />
           ) : (
@@ -36,15 +36,18 @@ function CourseDetail({ match }) {
           )}
           <StudentList enrollCourseHandle={enrollCourseHandle} URL={URL} />
           <div className="course-content-container">
-            <div>
+            <div className="course-head">
               <h1>{selected.course}</h1>
               <h2>{selected.name}</h2>
-            </div>
-            <div>
               COURSE_AUTHOR:{courseAuthor.name}
               AUTHOR_EMAIL:{courseAuthor.email}
             </div>
-            <div>Ranking</div>
+            <div className="course-ranking">
+              <h3>Ranking</h3>
+              <div>rank:1 name point</div>
+              <div>rank:2 name point</div>
+              <div>rank:3 name point</div>
+            </div>
             <div className="course-chat-container">
               <ChattingSection></ChattingSection>
             </div>

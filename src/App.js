@@ -24,7 +24,7 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div>
       <Switch>
         {isLogin ? (
           <div>
