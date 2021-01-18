@@ -1,5 +1,6 @@
 .course-continer {
   display: flex;
+  flex-wrap: wrap;
   .course {
     border: 1px black solid;
     padding: 1rem 1.5rem;
@@ -10,7 +11,7 @@
 .course-detail {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100vh - 80px);
   .course-split {
     display: flex;
     justify-content: center;
@@ -30,9 +31,10 @@
       justify-content: space-around;
       align-content: space-around;
       align-items: space-around;
-      background-color: brown;
+
+      // background-color: brown;
       .course-chat-container {
-        background-color: blue;
+        // background-color: blue;
         .chat-group {
           width: 100%;
           display: flex;

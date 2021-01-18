@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { loadSelectedCourse } from "../actions/selectedCourseAction";
 import { loadDetail } from "../actions/userAction";
-
 import { enrollURL } from "../api";
 import axios from "axios";
 
-function EnrollStudent({ setEnrollStudent }) {
+function EnrollStudent({ setEnrollStudent, URL }) {
   const dispatch = useDispatch();
   function close() {
     setEnrollStudent(false);
@@ -45,13 +46,14 @@ function EnrollStudent({ setEnrollStudent }) {
       )
       .then((response) => {
         console.log(response);
+        dispatch(loadSelectedCourse(URL));
+        close();
       })
       .catch((error) => {
         console.log(error.response);
       });
-    console.log();
   }
-  
+
   useEffect(() => {
     dispatch(loadDetail()).then(() => {
       filterName();
@@ -62,26 +64,26 @@ function EnrollStudent({ setEnrollStudent }) {
   return (
     <div className="outerContainer">
       <div className="student-enroll-container">
-      <button onClick={close}>X</button>
-      <h2>Enroll student</h2>
-      innerring
-      <form>
-        <div>
-          <h3>course Deaitl</h3>
-        </div>
-        <div>
-          <label htmlFor="student">Student</label>
-          <select name="student" ref={selectRef}>
-            {nameList.map((single) => (
-              <option key={single._id} value={single._id}>
-                {single.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button onClick={enrollHandle}>Enrollled</button>
-      </form>
-    </div>
+        <button onClick={close}>X</button>
+        <h2>Enroll student</h2>
+        innerring
+        <form>
+          <div>
+            <h3>course Deaitl</h3>
+          </div>
+          <div>
+            <label htmlFor="student">Student</label>
+            <select name="student" ref={selectRef}>
+              {nameList.map((single) => (
+                <option key={single._id} value={single._id}>
+                  {single.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button onClick={enrollHandle}>Enrollled</button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -14,3 +14,4 @@ export const getAllCourseURL = () => `${base_url}${enroll_url}`;
 export const selectedCourseURL = (classId) =>
   `${base_url}${enroll_url}class/${classId}`;
 export const enrollURL = () => `${base_url}${enroll_url}enrollCourse`;
+export const unenrollURL = () => `${base_url}${enroll_url}unenroll`;

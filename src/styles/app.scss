@@ -60,6 +60,7 @@ body {
 
 .container {
   display: flex;
+  max-height: 100vh;
   .side-nav {
     // background-color: bisque;
     position: fixed;
