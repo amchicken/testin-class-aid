@@ -61,28 +61,26 @@ function EnrollStudent({ setEnrollStudent, URL }) {
   }, [dispatch, isLoading]);
 
   return (
-    <div className="outerContainer">
-      <div className="student-enroll-container">
-        <button onClick={close}>X</button>
-        <h2>Enroll student</h2>
-        innerring
-        <form>
-          <div>
-            <h3>course Deaitl</h3>
-          </div>
-          <div>
-            <label htmlFor="student">Student</label>
-            <select name="student" ref={selectRef}>
-              {nameList.map((single) => (
-                <option key={single._id} value={single._id}>
-                  {single.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button onClick={enrollHandle}>Enrollled</button>
-        </form>
-      </div>
+    <div className="student-enroll-container">
+      <button onClick={close}>X</button>
+      <h2>Enroll student</h2>
+      innerring
+      <form>
+        <div>
+          <h3>course Deaitl</h3>
+        </div>
+        <div>
+          <label htmlFor="student">Student</label>
+          <select name="student" ref={selectRef}>
+            {nameList.map((single) => (
+              <option key={single._id} value={single._id}>
+                {single.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button onClick={enrollHandle}>Enrollled</button>
+      </form>
     </div>
   );
 }

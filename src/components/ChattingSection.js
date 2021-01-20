@@ -1,6 +1,6 @@
 import React from "react";
 
-import Chat from "./ChatBox/Chat/Chat";
+import Chat from "./ChattingBox";
 
 import { Route } from "react-router-dom";
 

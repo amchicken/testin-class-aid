@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RemoveCircle, AssignmentInd } from "@material-ui/icons";
 import { loadSelectedCourse } from "../actions/selectedCourseAction";
 import axios from "axios";
 import { unenrollURL } from "../api";
-import TestComponent from "./TestComponent";
+
+import StudentDetail from "./StudentDetail";
 
 function StudentList({ enrollCourseHandle, URL }) {
   const { selected, studentList } = useSelector((state) => state.selectCourse);
@@ -12,7 +12,9 @@ function StudentList({ enrollCourseHandle, URL }) {
   const dispatch = useDispatch();
 
   function removeStudent(event) {
+    event.preventDefault();
     const confirm = window.confirm("Press a button!");
+    console.log(event.target.value);
     if (confirm) {
       axios
         .post(
@@ -38,26 +40,20 @@ function StudentList({ enrollCourseHandle, URL }) {
   return (
     <div className="list-name">
       <ul>
-        {studentList.map((student, index) => (
-          <li key={student._id}>
-            <div>
-              <div>{student.name}</div>
-              <div>
-                <AssignmentInd />
-                {login.user.is_admin || login.user._id === student._id ? (
-                  <button onClick={removeStudent} value={student._id}>
-                    remove
-                    {/* <RemoveCircle /> */}
-                  </button>
-                ) : (
-                  ""
-                )}
-              </div>
-            </div>
-          </li>
-        ))}
+        {studentList.map(function (student) {
+          const canUnroll = login.user.is_admin || login.user_id === student.id;
+          return (
+            <li key={student._id}>
+              <StudentDetail
+                canUnroll={canUnroll}
+                name={student.name}
+                removeStudent={removeStudent}
+                _id={student._id}
+              />
+            </li>
+          );
+        })}
       </ul>
-      <TestComponent></TestComponent>
       <button onClick={enrollCourseHandle}>Enroll Student</button>
     </div>
   );
