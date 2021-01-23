@@ -24,9 +24,9 @@ const Profile = () => {
         <div className="profileImage">{user.name.charAt(0)}</div>
       </div>
       <div className={showMenu ? "nav-menu show" : "nav-menu"}>
-        <div>
+        {/* <div>
           <Link to="/"></Link>
-        </div>
+        </div> */}
         <div onClick={logout}>Logout</div>
       </div>
     </div>

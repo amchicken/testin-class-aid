@@ -70,9 +70,16 @@
         transform: translateY(55px);
         transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
 
-        &:hover {
-          opacity: 0.5;
+        svg {
+          transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
+        svg:hover {
+          color: rgba(41, 121, 255, 0.8);
+        }
+
+        // &:hover {
+        //   opacity: 0.5;
+        // }
       }
 
       button {
@@ -81,18 +88,25 @@
         transform: translateY(55px);
         transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
         background-color: transparent;
+        color: white;
         border-radius: 0;
         border: none;
         padding: 0;
         margin: 0;
         font-size: 1rem;
         cursor: pointer;
-        &:hover {
-          opacity: 0.5;
+
+        &:hover svg {
+          color: tomato;
         }
 
         svg {
           pointer-events: none;
+          transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+          &:hover {
+            color: tomato;
+            // color: rgba(41, 121, 255, 0.8);
+          }
         }
       }
     }

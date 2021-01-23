@@ -1,5 +1,6 @@
 const initialState = {
   courses: [],
+  mycourses: [],
   isLoading: true,
 };
 
@@ -9,6 +10,7 @@ const courseReducer = (state = initialState, action) => {
       return {
         ...state,
         courses: action.payload.courses,
+        mycourses: action.payload.mycourses,
         isLoading: false,
       };
     case "LOADING_COURSE":

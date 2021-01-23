@@ -8,7 +8,6 @@
   .chat-body {
     grid-area: body;
     max-height: 100%;
-    overflow-y: scroll;
   }
 
   .chat-input {
@@ -18,8 +17,11 @@
       background: rgba(24, 68, 81, 0.2);
       border-radius: 0 5rem 5rem 0;
       padding-right: -1em;
+      position: relative;
       button {
         padding: 0;
+        justify-self: flex-end;
+        width: 5rem;
       }
     }
 
@@ -27,7 +29,7 @@
       border: none;
       border-radius: 0;
       padding: 1.2em;
-      width: 80%;
+      width: calc(100% - 5rem);
       font-size: 1.2em;
       height: 1.2em;
       background: transparent;
@@ -50,6 +52,13 @@
       width: 20%;
     }
   }
+}
+
+.messages {
+  grid-area: body;
+  max-height: 100%;
+  overflow: auto;
+  flex: auto;
 }
 
 .messageBox {

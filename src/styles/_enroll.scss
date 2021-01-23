@@ -1,6 +1,58 @@
 .student-enroll-container {
   position: fixed;
   width: 90vw;
-  background-color: red;
+  min-height: 30vh;
+  background-color: rgba(114, 201, 206, 0.95);
+  border-radius: 1rem;
+  filter: drop-shadow(0.8rem 0.75rem 0.75rem rgb(24, 23, 23));
   z-index: 3;
+
+  .close {
+    padding: 1rem;
+    position: absolute;
+    background: transparent;
+  }
+  .topright {
+    top: 0;
+    right: 0;
+  }
+
+  .enroll-topic {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    color: white;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+    .student-selecter-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 0;
+      label {
+        font-size: 1.5rem;
+      }
+    }
+    div {
+      text-align: center;
+      color: whitesmoke;
+    }
+    button {
+      max-width: 8rem;
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+      border-radius: 2rem;
+      background-color: rgba(69, 177, 207, 0.2);
+      transition: all 0.2s;
+      &:hover {
+        background-color: rgb(41, 121, 255);
+      }
+    }
+  }
 }

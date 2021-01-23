@@ -4,6 +4,8 @@ import { loadSelectedCourse } from "../actions/selectedCourseAction";
 import { loadDetail } from "../actions/userAction";
 import { enrollURL } from "../api";
 import axios from "axios";
+import CourseHead from "./CourseDetail/CourseHead";
+import Loading from "./Loading";
 
 function EnrollStudent({ setEnrollStudent, URL }) {
   const dispatch = useDispatch();
@@ -54,7 +56,7 @@ function EnrollStudent({ setEnrollStudent, URL }) {
   }
 
   useEffect(() => {
-    dispatch(loadDetail()).then(() => {
+    dispatch(loadDetail()).then(function () {
       filterName();
       setisLoading(false);
     });
@@ -62,25 +64,30 @@ function EnrollStudent({ setEnrollStudent, URL }) {
 
   return (
     <div className="student-enroll-container">
-      <button onClick={close}>X</button>
-      <h2>Enroll student</h2>
-      innerring
-      <form>
+      {isLoading ? (
+        <Loading fullscreen={false} />
+      ) : (
         <div>
-          <h3>course Deaitl</h3>
+          <button className="close topright" onClick={close}>
+            X
+          </button>
+          <h2 className="enroll-topic">Enroll student</h2>
+          <form>
+            <CourseHead />
+            <div className="student-selecter-container">
+              <label htmlFor="student">Student</label>
+              <select name="student" ref={selectRef}>
+                {nameList.map((single) => (
+                  <option key={single._id} value={single._id}>
+                    {single.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button onClick={enrollHandle}>Enrollled</button>
+          </form>
         </div>
-        <div>
-          <label htmlFor="student">Student</label>
-          <select name="student" ref={selectRef}>
-            {nameList.map((single) => (
-              <option key={single._id} value={single._id}>
-                {single.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button onClick={enrollHandle}>Enrollled</button>
-      </form>
+      )}
     </div>
   );
 }

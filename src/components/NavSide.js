@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //IMPORT ICON
 import { Home as HomeIcon, Inbox } from "@material-ui/icons/";
 function NavSide() {
@@ -6,7 +7,9 @@ function NavSide() {
     <nav className="side-nav">
       <ul>
         <li>
-          <HomeIcon />
+          <Link to="/">
+            <HomeIcon />
+          </Link>
         </li>
         <li>
           <Inbox />

@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RemoveCircle, AssignmentInd } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
 function StudentDetail({ name, canUnroll, removeStudent, _id }) {
+  useEffect(() => {
+    console.log(canUnroll);
+  }, []);
   return (
-    <button class="btn-share">
-      <span class="btn-text">{name}</span>
-      <ul class="social-icons">
+    <button className="btn-share">
+      <span className="btn-text">{name}</span>
+      <ul className="social-icons">
         <li>
           <Link to="/">
             <AssignmentInd className="mysvg" />
           </Link>
         </li>
-        <li>
-          <button onClick={removeStudent} value={_id}>
-            <RemoveCircle className="mysvg" />
-          </button>
-        </li>
+
+        {canUnroll ? (
+          <li>
+            <button key={_id} onClick={removeStudent} value={_id}>
+              <RemoveCircle className="mysvg" />
+            </button>
+          </li>
+        ) : (
+          ""
+        )}
       </ul>
     </button>
   );

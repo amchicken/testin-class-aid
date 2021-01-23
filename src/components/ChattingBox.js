@@ -6,6 +6,7 @@ import Messages from "./ChatBox/Messages/Messages";
 import Input from "./ChatBox/Input/Input";
 
 const ENDPOINT = "localhost:5000";
+// const ENDPOINT = "https://chat-class-aid.herokuapp.com/";
 
 let socket;
 
@@ -14,7 +15,8 @@ const Chat = ({ location }) => {
   const { selected } = useSelector((state) => state.selectCourse);
   const [name, setName] = useState(login.user.name);
   const [room, setRoom] = useState(selected.course);
-  const [users, setUsers] = useState("");
+  // users all user in chat
+  // const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -29,7 +31,7 @@ const Chat = ({ location }) => {
         alert(error);
       }
     });
-  }, [location]);
+  }, [location, name, room]);
 
   useEffect(() => {
     socket.on("message", (message) => {
@@ -37,7 +39,7 @@ const Chat = ({ location }) => {
     });
 
     socket.on("roomData", ({ users }) => {
-      setUsers(users);
+      // setUsers(users);
     });
   }, []);
 
@@ -51,9 +53,7 @@ const Chat = ({ location }) => {
 
   return (
     <div className="chaxbox-container">
-      <div className="chat-body">
-        <Messages messages={messages} name={name} />
-      </div>
+      <Messages messages={messages} name={name} />
       <div className="chat-input">
         <Input
           message={message}
