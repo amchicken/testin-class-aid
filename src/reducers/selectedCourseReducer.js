@@ -2,6 +2,7 @@ const initialState = {
   selected: [],
   courseAuthor: {},
   studentList: [],
+  enrolled: false,
   isLoading: true,
 };
 
@@ -13,6 +14,7 @@ const selectedCourseReducer = (state = initialState, action) => {
         selected: action.payload.selected,
         courseAuthor: action.payload.courseAuthor,
         studentList: action.payload.studentList,
+        enrolled: action.payload.enrolled,
         isLoading: false,
       };
     case "LOADING_SELECTED_COURSE":

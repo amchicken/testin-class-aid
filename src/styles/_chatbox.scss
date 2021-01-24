@@ -5,6 +5,22 @@
   grid-template-areas:
     "body"
     "input";
+
+  .quiz-container {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(114, 201, 206, 0.95);
+    border-radius: 1rem;
+    filter: drop-shadow(0.8rem 0.75rem 0.75rem rgb(24, 23, 23));
+    z-index: 3;
+  }
+  .quiz-btn {
+    position: absolute;
+    right: 0;
+  }
   .chat-body {
     grid-area: body;
     max-height: 100%;

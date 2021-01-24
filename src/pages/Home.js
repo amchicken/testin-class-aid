@@ -18,7 +18,7 @@ const Home = () => {
   const { user } = useSelector((state) => state.login);
   useEffect(() => {
     dispatch(loadCourse(user._id));
-  }, [dispatch]);
+  }, [dispatch, user._id]);
 
   return (
     <div className="App">

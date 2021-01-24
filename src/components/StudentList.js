@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loadSelectedCourse } from "../actions/selectedCourseAction";
 import axios from "axios";
@@ -8,20 +8,12 @@ import StudentDetail from "./StudentDetail";
 
 function StudentList({ enrollCourseHandle, URL }) {
   const { selected, studentList } = useSelector((state) => state.selectCourse);
-  const { mycourses } = useSelector((state) => state.course);
   const login = useSelector((state) => state.login);
   const dispatch = useDispatch();
-  const [canEnroll, setCanEnroll] = useState(true);
-
-  function isCanEnroll() {
-    mycourses.forEach((course) => {
-      if (course._id === selected._id) setCanEnroll(false);
-    });
-  }
 
   function removeStudent(event) {
     event.preventDefault();
-    const confirm = window.confirm("Remove this student?");
+    const confirm = window.confirm("Unroll from this course?");
     console.log(event.target.value);
     if (confirm) {
       axios
@@ -39,16 +31,12 @@ function StudentList({ enrollCourseHandle, URL }) {
         )
         .then((res) => {
           console.log(res);
-          dispatch(loadSelectedCourse(URL));
+          dispatch(loadSelectedCourse(URL, login.user._id));
         })
         .catch((err) => console.log(err.response));
     }
     dispatch(loadCourse(login.user._id));
   }
-
-  useEffect(() => {
-    isCanEnroll();
-  }, []);
 
   return (
     <div className="list-name">
@@ -68,7 +56,7 @@ function StudentList({ enrollCourseHandle, URL }) {
           );
         })}
       </ul>
-      {canEnroll ? (
+      {login.user._id === selected.author_id ? (
         <button className="enroll-btn" onClick={enrollCourseHandle}>
           Enroll
         </button>

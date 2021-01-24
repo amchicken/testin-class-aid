@@ -43,11 +43,18 @@ export const RefreshLogin = () => async (dispatch) => {
   });
 };
 
-export const Register = (name, email, password) => async (dispatch) => {
+export const Register = ({ name, email, password, is_admin }) => async (
+  dispatch
+) => {
   await axios
-    .post(signupURL(), { name, email, password })
+    .post(signupURL(), { name, email, password, is_admin })
     .then((res) => {
-      return true;
+      dispatch({
+        type: "ERROR_REGISTER",
+        payload: {
+          register_error: "SUCCESS",
+        },
+      });
     })
     .catch((err) => {
       dispatch({

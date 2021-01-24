@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { Logout } from "../actions/loginAction";
 
 const Profile = () => {
@@ -24,9 +23,6 @@ const Profile = () => {
         <div className="profileImage">{user.name.charAt(0)}</div>
       </div>
       <div className={showMenu ? "nav-menu show" : "nav-menu"}>
-        {/* <div>
-          <Link to="/"></Link>
-        </div> */}
         <div onClick={logout}>Logout</div>
       </div>
     </div>

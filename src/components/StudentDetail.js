@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { RemoveCircle, AssignmentInd } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
 function StudentDetail({ name, canUnroll, removeStudent, _id }) {
-  useEffect(() => {
-    console.log(canUnroll);
-  }, []);
   return (
     <button className="btn-share">
       <span className="btn-text">{name}</span>

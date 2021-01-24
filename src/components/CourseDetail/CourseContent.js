@@ -1,11 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 import ChattingSection from "../ChattingSection";
 import CourseHead from "./CourseHead";
 
 function CourseContent() {
-  const { courseAuthor, selected } = useSelector((state) => state.selectCourse);
   return (
     <div className="course-content-container">
       <CourseHead />

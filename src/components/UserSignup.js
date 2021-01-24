@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Link, Redirect } from "react-router-dom";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -11,26 +11,29 @@ const Signup = () => {
   const refEmail = useRef();
   const refPassword = useRef();
   const refName = useRef();
-  const [register, setRegister] = useState(null);
+  const refAdmin = useRef();
 
-  const signupHandle = (e) => {
-    e.preventDefault();
-    const registerEmail = refEmail.current.value;
-    const registerPassword = refPassword.current.value;
-    const registerName = refName.current.value;
-    const success = dispatch(
-      Register(registerName, registerEmail, registerPassword)
-    );
-    if (success) setRegister("SUCCESS");
+  const adminCheck = () => {
+    return Boolean(refAdmin.current.value === "true");
   };
 
-  console.log(`component ${register_error}`);
+  const signupHandle = async (e) => {
+    e.preventDefault();
+    const registerObject = {
+      name: refName.current.value,
+      email: refEmail.current.value,
+      password: refPassword.current.value,
+      is_admin: adminCheck(),
+    };
+    await dispatch(Register(registerObject));
+  };
+
   return (
     <div className="login-container">
       <form className="wrap">
         <div>
           <h1>SignUp</h1>
-          {register && <Redirect to="/login" />}
+          {register_error === "SUCCESS" ? <Redirect to="/login" /> : ""}
           {register_error && <div className="error">{register_error}</div>}
         </div>
         <div>
@@ -44,6 +47,13 @@ const Signup = () => {
         <div>
           <p>Password</p>
           <input ref={refPassword} type="password" required />
+        </div>
+        <div>
+          <p>Role</p>
+          <select ref={refAdmin}>
+            <option value={false}>Student</option>
+            <option value={true}>Teacher</option>
+          </select>
         </div>
         <div className="login-button-group">
           <button type="submit" onClick={signupHandle}>

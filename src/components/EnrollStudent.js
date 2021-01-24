@@ -20,16 +20,7 @@ function EnrollStudent({ setEnrollStudent, URL }) {
   const [nameList, setnameList] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const selectRef = useRef(null);
-  function filterName() {
-    let list = studentList.map(function (item) {
-      return item._id;
-    });
-    list.push(courseAuthor._id);
-    const target = user.filter(function (item) {
-      return !list.includes(item._id);
-    });
-    setnameList(target);
-  }
+
   function enrollHandle(e) {
     e.preventDefault();
     axios
@@ -47,7 +38,7 @@ function EnrollStudent({ setEnrollStudent, URL }) {
       )
       .then((response) => {
         console.log(response);
-        dispatch(loadSelectedCourse(URL));
+        dispatch(loadSelectedCourse(URL, login.user._id));
         close();
       })
       .catch((error) => {
@@ -56,11 +47,20 @@ function EnrollStudent({ setEnrollStudent, URL }) {
   }
 
   useEffect(() => {
-    dispatch(loadDetail()).then(function () {
-      filterName();
-      setisLoading(false);
-    });
+    dispatch(loadDetail());
+    setisLoading(false);
   }, [dispatch, isLoading]);
+
+  useEffect(() => {
+    let list = studentList.map(function (item) {
+      return item._id;
+    });
+    list.push(courseAuthor._id);
+    const target = user.filter(function (item) {
+      return !list.includes(item._id);
+    });
+    setnameList(target);
+  }, [studentList, courseAuthor._id, user]);
 
   return (
     <div className="student-enroll-container">
