@@ -27,14 +27,14 @@ const App = () => {
     <div>
       <Switch>
         {isLogin ? (
-          <div>
+          <>
             <Redirect to="/" />
             <Route path={["/", "/course/:name"]}>
               <Home />
             </Route>
-          </div>
+          </>
         ) : (
-          <div>
+          <>
             <Redirect to="/login" />
             <Route path={["/login", "/signup"]} exact>
               <Route path="/login" exact>
@@ -44,7 +44,7 @@ const App = () => {
                 <UserSignup />
               </Route>
             </Route>
-          </div>
+          </>
         )}
       </Switch>
     </div>

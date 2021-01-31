@@ -7,7 +7,7 @@ function Quiz({ question, choice, quizAns }) {
       <h3>{question}</h3>
       <div>
         {choice.map((key, index) => (
-          <button value={index} onClick={quizAns}>
+          <button key={index} value={index} onClick={quizAns}>
             {key}
           </button>
         ))}

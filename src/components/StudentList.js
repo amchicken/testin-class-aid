@@ -51,6 +51,7 @@ function StudentList({ enrollCourseHandle, URL }) {
                 name={student.name}
                 removeStudent={removeStudent}
                 _id={student._id}
+                online={student.online}
               />
             </li>
           );

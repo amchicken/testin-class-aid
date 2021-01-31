@@ -1,11 +1,13 @@
 import React from "react";
 import { RemoveCircle, AssignmentInd } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-
-function StudentDetail({ name, canUnroll, removeStudent, _id }) {
+function StudentDetail({ name, canUnroll, removeStudent, _id, online }) {
   return (
-    <button className="btn-share">
-      <span className="btn-text">{name}</span>
+    <div className="btn-share">
+      <span className="btn-text">
+        <h4>{name}</h4>
+        <span>{online ? "ONLINE" : "OFFLIEN"}</span>
+      </span>
       <ul className="social-icons">
         <li>
           <Link to="/">
@@ -15,7 +17,7 @@ function StudentDetail({ name, canUnroll, removeStudent, _id }) {
 
         {canUnroll ? (
           <li>
-            <button key={_id} onClick={removeStudent} value={_id}>
+            <button onClick={removeStudent} value={_id}>
               <RemoveCircle className="mysvg" />
             </button>
           </li>
@@ -23,7 +25,7 @@ function StudentDetail({ name, canUnroll, removeStudent, _id }) {
           ""
         )}
       </ul>
-    </button>
+    </div>
   );
 }
 

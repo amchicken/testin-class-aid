@@ -12,12 +12,10 @@ function EnrollStudent({ setEnrollStudent, URL }) {
   function close() {
     setEnrollStudent(false);
   }
-  const { selected, studentList, courseAuthor } = useSelector(
+  const { selected, courseAuthor, enrollList } = useSelector(
     (state) => state.selectCourse
   );
-  const { user } = useSelector((state) => state.user);
   const login = useSelector((state) => state.login);
-  const [nameList, setnameList] = useState([]);
   const [isLoading, setisLoading] = useState(true);
   const selectRef = useRef(null);
 
@@ -51,17 +49,6 @@ function EnrollStudent({ setEnrollStudent, URL }) {
     setisLoading(false);
   }, [dispatch, isLoading]);
 
-  useEffect(() => {
-    let list = studentList.map(function (item) {
-      return item._id;
-    });
-    list.push(courseAuthor._id);
-    const target = user.filter(function (item) {
-      return !list.includes(item._id);
-    });
-    setnameList(target);
-  }, [studentList, courseAuthor._id, user]);
-
   return (
     <div className="student-enroll-container">
       {isLoading ? (
@@ -77,11 +64,15 @@ function EnrollStudent({ setEnrollStudent, URL }) {
             <div className="student-selecter-container">
               <label htmlFor="student">Student</label>
               <select name="student" ref={selectRef}>
-                {nameList.map((single) => (
-                  <option key={single._id} value={single._id}>
-                    {single.name}
-                  </option>
-                ))}
+                {enrollList.map((user) => {
+                  if (user._id !== courseAuthor._id)
+                    return (
+                      <option key={user._id} value={user._id}>
+                        {user.name}
+                      </option>
+                    );
+                  else return "";
+                })}
               </select>
             </div>
             <button onClick={enrollHandle}>Enrollled</button>

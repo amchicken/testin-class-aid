@@ -15,7 +15,6 @@ function CourseDetail({ match }) {
   const dispatch = useDispatch();
   const login = useSelector((state) => state.login);
   const { enrolled, selected } = useSelector((state) => state.selectCourse);
-  const [loading, setLoading] = useState(true);
   const [enrollStudent, setEnrollStudent] = useState(false);
   const [studentSelect] = useState(false);
 
@@ -25,12 +24,11 @@ function CourseDetail({ match }) {
 
   useEffect(() => {
     dispatch(loadSelectedCourse(URL, login.user._id));
-    setLoading(false);
   }, [dispatch, login.user._id, URL]);
 
   return (
     <div className="course-select-container">
-      {loading ? <Loading fullscreen={true} /> : ""}
+      {selected.isLoading ? <Loading fullscreen={true} /> : ""}
       {enrolled ? (
         <div className="course-detail">
           {enrollStudent ? (

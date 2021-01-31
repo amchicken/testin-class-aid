@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { loadCourse } from "../actions/courseAction";
+// import { unloadCourse } from "../actions/selectedCourseAction";
 //PAGE AND COMPONENT
 import AddCoursePage from "./AddCoursePage";
 import CourseDetail from "./CourseDetail";
@@ -12,7 +13,7 @@ import AuthorCourse from "../components/Home/AuthorCourse";
 import AllCourse from "../components/Home/AllCourse";
 import MyCourse from "../components/Home/MyCourse";
 
-const Home = () => {
+const Home = ({ location }) => {
   const dispatch = useDispatch();
   const { courses, mycourses } = useSelector((state) => state.course);
   const { user } = useSelector((state) => state.login);
